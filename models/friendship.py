@@ -25,6 +25,7 @@ class FriendShip(BaseModel, TimestampMixin):
         >>> # Статус принятия запроса в друзья
         >>> friendship_status_accept = FriendshipStatusModel(status=FriendshipStatus.ACCEPTED)
     """
+
     sender_request_user_id: Mapped[int] = mapped_column(
         ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True
     )
@@ -39,5 +40,5 @@ class FriendShip(BaseModel, TimestampMixin):
         ),
         nullable=False,
         index=True,
-        default=FriendshipStatus.PENDING
+        default=FriendshipStatus.PENDING,
     )

@@ -34,13 +34,16 @@ class Session(BaseModel, TimestampMixin):
         >>> # Получение токена сессии
         >>> print(session.token)
     """
+
     token: Mapped[str] = mapped_column(Text, unique=True, index=True, nullable=False)
     ip: Mapped[str] = mapped_column(String(MAX_IP_LENGTH), nullable=True)
     agent: Mapped[str] = mapped_column(Text, nullable=True)
     location: Mapped[str] = mapped_column(String(MAX_LOCATION_STR), nullable=True)
     address: Mapped[str] = mapped_column(Text, nullable=True)
     deactivated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    access_data_id: Mapped[int] = mapped_column(ForeignKey("access_data.id", ondelete="CASCADE"), nullable=False)
+    access_data_id: Mapped[int] = mapped_column(
+        ForeignKey("access_data.id", ondelete="CASCADE"), nullable=False
+    )
     access_data: Mapped["AccessData"] = relationship("AccessData")
 
     @property
@@ -61,8 +64,10 @@ class Session(BaseModel, TimestampMixin):
         Notes:
             Сессия считается активной если активная она сама, данные доступа и пользователь не удален
         """
-        return all((
-            not self.deactivated_at,
-            not self.access_data.deactivated_at,
-            not self.access_data.user.deleted_at
-        ))
+        return all(
+            (
+                not self.deactivated_at,
+                not self.access_data.deactivated_at,
+                not self.access_data.user.deleted_at,
+            )
+        )
