@@ -48,6 +48,7 @@ class ContactType(StrEnum):
         >>> # Создание контакта другого типа
         >>> contact_other: Contact = Contact(value="89999999999", type=ContactType.OTHER, other_type="Skype")
     """
+
     EMAIL = "0"
     PHONE = "1"
     VK = "2"

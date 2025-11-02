@@ -34,7 +34,10 @@ class Contact(BaseModel, TimestampMixin, DeletedAtMixin):
         >>> # Создание контакта другого типа
         >>> contact_other: ContactModel = ContactModel(value="89999999999", type=ContactType.OTHER, other_type="Skype")
     """
-    value: Mapped[str] = mapped_column(String(CONTACT_VALUE_LENGTH), nullable=False, unique=True, index=True)
+
+    value: Mapped[str] = mapped_column(
+        String(CONTACT_VALUE_LENGTH), nullable=False, unique=True, index=True
+    )
     type: Mapped[ContactType] = mapped_column(
         Enum(
             ContactType,
@@ -47,9 +50,8 @@ class Contact(BaseModel, TimestampMixin, DeletedAtMixin):
     other_type: Mapped[str] = mapped_column(String(CONTACT_VALUE_LENGTH), nullable=True)
     verified_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     deactivated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True)
-
-    user: Mapped["User"] = relationship(
-        "User",
-        back_populates="contacts"
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True
     )
+
+    user: Mapped["User"] = relationship("User", back_populates="contacts")

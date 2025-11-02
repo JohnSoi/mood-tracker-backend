@@ -22,13 +22,16 @@ class AccessData(BaseModel):
         user_id (int): идентификатор связанного пользователя
         user (UserModel): модель с данными о пользователе
     """
-    login: Mapped[str] = mapped_column(String(MAX_LOGIN_LENGTH), unique=True, nullable=False, index=True)
+
+    login: Mapped[str] = mapped_column(
+        String(MAX_LOGIN_LENGTH), unique=True, nullable=False, index=True
+    )
     hashed_password: Mapped[str] = mapped_column(Text, nullable=False)
     deactivated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
-    user_id: Mapped[int] = mapped_column(ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True)
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True
+    )
 
     user: Mapped["User"] = relationship(
-        "User",
-        back_populates="access_data",
-        single_parent=True
+        "User", back_populates="access_data", single_parent=True
     )

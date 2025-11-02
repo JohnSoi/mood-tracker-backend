@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 
 app: FastAPI = FastAPI()
 
+
 @app.get("/")
 def read_root():
     """Редирект на страницу документации"""

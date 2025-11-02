@@ -59,13 +59,13 @@ class User(BaseModel, TimestampMixin, DeletedAtMixin):
         back_populates="user",
         uselist=False,
         cascade="all, delete-orphan",
-        lazy="selectin"  # Загружаем сразу с пользователем
+        lazy="selectin",  # Загружаем сразу с пользователем
     )
     contacts: Mapped[list["Contact"]] = relationship(
         "Contact",
         back_populates="user",
         cascade="all, delete-orphan",
-        lazy="selectin"  # Загружаем сразу с пользователем
+        lazy="selectin",  # Загружаем сразу с пользователем
     )
 
     @property
