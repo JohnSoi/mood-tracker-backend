@@ -8,10 +8,20 @@ from sqlalchemy import String, Text, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from consts.access_data import MAX_LOGIN_LENGTH
-from models.base import BaseModel
+from .base import BaseModel
 
 
 class AccessData(BaseModel):
+    """
+    Модель данных доступа в систему
+
+    Attributes:
+        login (str): логин пользователя
+        hashed_password (str): пароль пользователя
+        deactivated_at (datetime | None): дата деактивации пользователя
+        user_id (int): идентификатор связанного пользователя
+        user (UserModel): модель с данными о пользователе
+    """
     login: Mapped[str] = mapped_column(String(MAX_LOGIN_LENGTH), unique=True, nullable=False, index=True)
     hashed_password: Mapped[str] = mapped_column(Text, nullable=False)
     deactivated_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
