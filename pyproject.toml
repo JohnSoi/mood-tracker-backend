@@ -1,7 +1,17 @@
 [project]
 name = "mood-tracker-backend"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.0.1"
+description = "Бэкенд для трекера настроения"
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = []
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.120.4",
+    "pydantic>=2.12.3",
+    "pydantic-settings>=2.11.0",
+    "sqlalchemy>=2.0.44",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.14.3",
+]
