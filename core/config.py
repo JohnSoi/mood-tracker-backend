@@ -12,6 +12,7 @@ class Settings(BaseSettings):
 
     Attributes:
         APP_NAME (str): название приложения
+        DEBUG (bool): режим отладки приложения
         DB_URL (PostgresDsn): адрес для подключения к БД
         SECRET_KEY (str): секретный ключ приложения для генерации защищенных данных
 
@@ -22,6 +23,7 @@ class Settings(BaseSettings):
     """
 
     APP_NAME: str = "mood-tracker"
+    DEBUG: bool = False
     DB_URL: PostgresDsn
     SECRET_KEY: str
 

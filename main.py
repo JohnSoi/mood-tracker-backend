@@ -1,6 +1,9 @@
-def main():
-    print("Hello from mood-tracker-backend!")
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 
+app: FastAPI = FastAPI()
 
-if __name__ == "__main__":
-    main()
+@app.get("/")
+def read_root():
+    """Редирект на страницу документации"""
+    return RedirectResponse(url="/docs")

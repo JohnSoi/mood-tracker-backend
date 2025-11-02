@@ -23,7 +23,6 @@ class BaseModel(DeclarativeBase):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
 
-    @classmethod
     @declared_attr.directive
     def __tablename__(cls) -> str:
         """
