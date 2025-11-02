@@ -6,8 +6,8 @@ from sqlalchemy import ForeignKey, Enum
 from sqlalchemy.orm import Mapped, mapped_column
 
 from consts.friendship import FriendshipStatus
-from models.base import BaseModel
-from models.mixins import TimestampMixin
+from .base import BaseModel
+from .mixins import TimestampMixin
 
 
 class FriendShip(BaseModel, TimestampMixin):

@@ -6,8 +6,8 @@ from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from consts.tag import MAX_TAG_NAME_LENGTH, MAX_COLOR_LENGTH
-from models.base import BaseModel
-from models.user import User
+from .base import BaseModel
+from .user import User
 
 
 class Tag(BaseModel):
@@ -17,8 +17,7 @@ class Tag(BaseModel):
     Attributes:
         name (str): название тега
         color (str): цвет оформления тега
-        user_id (int | None): идентификатор связанного пользователя. Параметры без него считаются общими
-        user (UserModel | None): данные о связанном пользователе
+        user_id (int | None): идентификатор связанного пользователя
 
     Examples:
         >>> # Создание тега для работы
@@ -29,5 +28,3 @@ class Tag(BaseModel):
     user_id: Mapped[int] = mapped_column(
         ForeignKey("user.id", ondelete="CASCADE"), index=True, nullable=True
     )
-
-    user: Mapped["User"] = relationship("User")

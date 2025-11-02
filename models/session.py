@@ -8,9 +8,9 @@ from sqlalchemy import ForeignKey, Text, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from consts.session import MAX_IP_LENGTH, MAX_LOCATION_STR
-from models.access_data import AccessData
-from models.base import BaseModel
-from models.mixins import TimestampMixin
+from .access_data import AccessData
+from .base import BaseModel
+from .mixins import TimestampMixin
 
 
 class Session(BaseModel, TimestampMixin):

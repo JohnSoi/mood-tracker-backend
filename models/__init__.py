@@ -9,3 +9,5 @@ from .friendship import FriendshipStatus as FriendshipStatusModel
 from .session import Session as SessionModel
 from .user_setting import UserSetting as UserSettingsModel
 from .tags import Tag as TagModel
+from .mood_entry import MoodEntry as MoodEntryModel
+from .mood_entry_tags import MoodEntryTags as MoodEntryTagsModel
