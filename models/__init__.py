@@ -11,3 +11,4 @@ from .user_setting import UserSetting as UserSettingsModel
 from .tags import Tag as TagModel
 from .mood_entry import MoodEntry as MoodEntryModel
 from .mood_entry_tags import MoodEntryTags as MoodEntryTagsModel
+from .mood_entry_visibility import MoodEntryVisibility as MoodEntryVisibilityModel
