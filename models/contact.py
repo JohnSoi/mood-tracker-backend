@@ -10,6 +10,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from consts.contact import ContactType, CONTACT_VALUE_LENGTH
 from .base import BaseModel
 from .mixins import TimestampMixin, DeletedAtMixin
+from .user import User
 
 
 class Contact(BaseModel, TimestampMixin, DeletedAtMixin):
@@ -54,4 +55,4 @@ class Contact(BaseModel, TimestampMixin, DeletedAtMixin):
         ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True
     )
 
-    user: Mapped["User"] = relationship("User", back_populates="contacts")
+    user: Mapped["User"] = relationship("User")

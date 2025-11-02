@@ -9,6 +9,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from consts.access_data import MAX_LOGIN_LENGTH
 from .base import BaseModel
+from .user import User
 
 
 class AccessData(BaseModel):
@@ -32,6 +33,4 @@ class AccessData(BaseModel):
         ForeignKey("user.id", ondelete="CASCADE"), unique=True, index=True
     )
 
-    user: Mapped["User"] = relationship(
-        "User", back_populates="access_data", single_parent=True
-    )
+    user: Mapped["User"] = relationship("User", single_parent=True)

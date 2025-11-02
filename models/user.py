@@ -23,8 +23,6 @@ class User(BaseModel, TimestampMixin, DeletedAtMixin):
         gender (UserGender): пол пользователя
         remove_publish_at (datetime | None): время снятия с публикации отображения ФИО
         avatar_url (str | None): путь к аватару пользователя
-        access_data (AccessDataModel): модель данных о доступе
-        contacts (list(ContactModel): список связанных контактов
 
     Examples:
         >>> from models.user import User
@@ -54,19 +52,6 @@ class User(BaseModel, TimestampMixin, DeletedAtMixin):
         DateTime(timezone=True), nullable=True
     )
     avatar_url: Mapped[str] = mapped_column(Text, nullable=True)
-    access_data: Mapped["AccessData"] = relationship(
-        "AccessData",
-        back_populates="user",
-        uselist=False,
-        cascade="all, delete-orphan",
-        lazy="selectin",  # Загружаем сразу с пользователем
-    )
-    contacts: Mapped[list["Contact"]] = relationship(
-        "Contact",
-        back_populates="user",
-        cascade="all, delete-orphan",
-        lazy="selectin",  # Загружаем сразу с пользователем
-    )
 
     @property
     def full_name(self) -> str:
