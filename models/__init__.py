@@ -3,3 +3,4 @@
 __author__: str = "Digital Horizons"
 
 from .user import User as UserModel
+from .access_data import AccessData as AccessDataModel

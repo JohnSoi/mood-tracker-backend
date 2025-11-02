@@ -5,7 +5,7 @@ __author__: str = "Digital Horizons"
 from datetime import datetime
 
 from sqlalchemy import String, Enum, DateTime, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from consts.user import UserGender, NAME_LENGTH
 from .base import BaseModel
@@ -52,6 +52,14 @@ class User(BaseModel, TimestampMixin, DeletedAtMixin):
         DateTime(timezone=True), nullable=True
     )
     avatar_url: Mapped[str] = mapped_column(Text, nullable=True)
+
+    access_data: Mapped["AccessData"] = relationship(
+        "AccessData",
+        back_populates="user",
+        uselist=False,
+        cascade="all, delete-orphan",
+        lazy="selectin"  # Загружаем сразу с пользователем
+    )
 
     @property
     def full_name(self) -> str:
